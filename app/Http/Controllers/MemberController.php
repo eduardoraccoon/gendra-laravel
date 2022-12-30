@@ -17,7 +17,7 @@ class MemberController extends Controller
         $members = Member::join("positions", "positions.id", "=", "members.fk_cargo")
             ->join("departaments", "departaments.id", "=", "members.fk_departamento")
             ->join("types", "types.id", "=", "members.fk_tipo")
-            ->select("members.nombre", "members.apellidos", "positions.nombre as cargo", "departaments.nombre as departamento", "types.nombre as tipo")
+            ->select("members.id", "members.nombre", "members.apellidos", "positions.nombre as cargo", "departaments.nombre as departamento", "types.nombre as tipo")
             ->get();
         return $members;
     }
