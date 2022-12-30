@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pokemon;
-use App\Models\User;
+use App\Models\Member;
 
-class PokemonController extends Controller
+class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,8 @@ class PokemonController extends Controller
      */
     public function index()
     {
-        $pokemons = Pokemon::select('users.id','pokemon.number_poke1', 'pokemon.number_poke2', 'pokemon.number_poke3', 'pokemon.number_poke4', 'pokemon.number_poke5', 'pokemon.number_poke6','users.name')
-        ->join('users', 'pokemon.user_id', '=', 'users.id')
-        ->get();
-        return $pokemons;
+        $members = Member::all();
+        return $members;
     }
 
     /**
@@ -27,7 +24,7 @@ class PokemonController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {      
         //
     }
 
@@ -39,20 +36,14 @@ class PokemonController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->name = $request->name;
-        $user->save();
+        $member = new Member();
+        $member->nombre = $request->nombre;
+        $member->apellidos = $request->apellidos;
+        $member->fk_cargo = $request->fk_cargo;
+        $member->fk_departamento = $request->fk_departamento;
+        $member->fk_tipo = $request->fk_tipo;
 
-        $last_id = User::all()->last()->id;
-        $pokemon = new Pokemon();
-        $pokemon->user_id = $last_id;
-        $pokemon->number_poke1 = $request->number_poke1;
-        $pokemon->number_poke2 = $request->number_poke2;
-        $pokemon->number_poke3 = $request->number_poke3;
-        $pokemon->number_poke4 = $request->number_poke4;
-        $pokemon->number_poke5 = $request->number_poke5;
-        $pokemon->number_poke6 = $request->number_poke6;
-        $pokemon->save();
+        $member->save();
     }
 
     /**

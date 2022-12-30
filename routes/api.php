@@ -18,5 +18,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/pokemons', 'App\Http\Controllers\PokemonController@index');
-Route::post('/add','App\Http\Controllers\PokemonController@store');
+Route::get('/members', 'App\Http\Controllers\MemberController@index');
+Route::post('/add-member','App\Http\Controllers\MemberController@store');
