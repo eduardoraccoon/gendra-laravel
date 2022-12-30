@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Member;
+use App\Models\Position;
 
-class MemberController extends Controller
+class PositionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +14,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::join("positions", "positions.id", "=", "members.fk_cargo")
-            ->join("departaments", "departaments.id", "=", "members.fk_departamento")
-            ->join("types", "types.id", "=", "members.fk_tipo")
-            ->select("members.nombre", "members.apellidos", "positions.nombre as cargo", "departaments.nombre as departamento", "types.nombre as tipo")
-            ->get();
-        return $members;
+        $position = Position::All();
+        return $position;
     }
 
     /**
@@ -40,14 +36,10 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $member = new Member();
-        $member->nombre = $request->nombre;
-        $member->apellidos = $request->apellidos;
-        $member->fk_cargo = $request->fk_cargo;
-        $member->fk_departamento = $request->fk_departamento;
-        $member->fk_tipo = $request->fk_tipo;
+        $position = new Position();
+        $position->nombre = $request->nombre;
 
-        $member->save();
+        $position->save();
     }
 
     /**

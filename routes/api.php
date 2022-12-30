@@ -20,3 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/members', 'App\Http\Controllers\MemberController@index');
 Route::post('/add-member','App\Http\Controllers\MemberController@store');
+
+Route::get('/positions', 'App\Http\Controllers\PositionController@index');
+Route::post('/add-position', 'App\Http\Controllers\PositionController@store');
+
