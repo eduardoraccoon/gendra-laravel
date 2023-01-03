@@ -23,4 +23,6 @@ Route::post('/add-member','App\Http\Controllers\MemberController@store');
 
 Route::get('/positions', 'App\Http\Controllers\PositionController@index');
 Route::post('/add-position', 'App\Http\Controllers\PositionController@store');
+Route::put('/position/{id}', 'App\Http\Controllers\PositionController@update');
+Route::delete('/delete-position/{id}', 'App\Http\Controllers\PositionController@destroy');
 

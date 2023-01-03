@@ -59,7 +59,7 @@ class PositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
         //
     }
@@ -71,9 +71,13 @@ class PositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $position = Position::findOrFail($request->id);
+        $position->nombre = $request->nombre;
+
+        $position->save();
+        return $position;
     }
 
     /**
@@ -82,8 +86,9 @@ class PositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $position = Position::destroy($request->id);
+        return $position;
     }
 }
